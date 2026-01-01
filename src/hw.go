@@ -110,21 +110,4 @@ func copyFile(src, dst string) error {
 
 func main() {
 	fmt.Println("Hello, World!")
-
-	// Copy contents from test to val folder
-	err := copyFolderContents("test", "val")
-	if err != nil {
-		fmt.Printf("Error copying folders: %v\n", err)
-	} else {
-		fmt.Println("Successfully copied contents from test to val.")
-	}
-
-	// Encrypt the contents of val folder
-	key := []byte("a-32-byte-key-for-AES-256-!!!!!!") // 32 bytes
-	err = encryptFolder("val", key)
-	if err != nil {
-		fmt.Printf("Error encrypting val folder: %v\n", err)
-	} else {
-		fmt.Println("Successfully encrypted contents of val folder.")
-	}
 }
