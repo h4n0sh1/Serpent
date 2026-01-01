@@ -1,9 +1,8 @@
 package main
 
 import (
-	"testing"
-
 	"serpent/pkg/encrypt"
+	"testing"
 )
 
 func TestEncryptAndCopy(t *testing.T) {

