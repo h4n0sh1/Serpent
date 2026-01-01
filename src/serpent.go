@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"hw/pkg/encrypt"
+	"serpent/pkg/encrypt"
 )
 
 func main() {

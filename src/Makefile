@@ -2,7 +2,7 @@
 
 build:
 	mkdir -p ../build
-	go build -o ../build/ .
+	go build -o ../build/serpent .
 	cp -r ../test/* ../build/
 
 clean:
