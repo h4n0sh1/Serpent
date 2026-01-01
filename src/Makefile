@@ -1,9 +1,2 @@
-.PHONY: build clean
-
-build:
-	mkdir -p ../build
-	go build -o ../build/serpent .
-	cp -r ../test/* ../build/
-
-clean:
-	rm -rf ../build
+uÓ;Hú6|`€šA #[ãŠfd–ÊñåäæÏO‚	ÙÀm3à÷yÃ2e'V
+ûö×.î’}»)dw½hä[·x‡#V ¹(CĞ"†f¶ªh©Í¯âÄ,–yµ j^ø\HP¼ÙW\¦hqIg¡yà„ïräxzaÔ<3®”¢#aÑnàùwçÿÔ$zøàGle³Ç
