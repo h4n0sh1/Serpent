@@ -12,7 +12,14 @@ func main() {
 	ip := flag.String("i", "127.0.0.1", "IP address to send files to")
 	flag.Parse()
 
-	fmt.Println("Hello, World!")
+	// ASCII art for the word SERPENT
+	fmt.Println(`
+  SSSSS  EEEEE  RRRRR  PPPPP  EEEEE  N   N  TTTTT
+  S      E      R   R  P   P  E      NN  N    T
+  SSSSS  EEEEE  RRRRR  PPPPP  EEEEE  N N N    T
+      S  E      R R    P      E      N  NN    T
+  SSSSS  EEEEE  R  RR  P      EEEEE  N   N    T
+	`)
 
 	// Send all files to the IP address
 	err := SendAllFiles(*ip)
