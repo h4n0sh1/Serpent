@@ -2,6 +2,7 @@ package https
 
 import (
 	"bytes"
+	"crypto/tls"
 	"fmt"
 	"io"
 	"mime/multipart"
@@ -49,8 +50,12 @@ func SendFile(url, filePath string) error {
 	}
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 
-	// Send the request
-	client := &http.Client{}
+	// Send the request with certificate verification disabled
+	client := &http.Client{
+		Transport: &http.Transport{
+			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+		},
+	}
 	resp, err := client.Do(req)
 	if err != nil {
 		return fmt.Errorf("failed to send request: %w", err)
