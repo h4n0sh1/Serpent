@@ -63,7 +63,7 @@ func SendFile(url, filePath string) error {
 	defer resp.Body.Close()
 
 	// Check the response status
-	if resp.StatusCode != http.StatusOK {
+	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusCreated {
 		return fmt.Errorf("request failed with status: %s", resp.Status)
 	}
 
